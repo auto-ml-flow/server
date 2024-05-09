@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: postgres:14.1-alpine
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    volumes:
+      - postgres_storage:/var/lib/postgresql/data
+    command: -p ${POSTGRES_PORT}
+
+volumes:
+  postgres_storage: {}
