@@ -43,7 +43,9 @@ THIRD_PARTY_APPS = [
     "rosetta",
     "drf_spectacular",
 ]
-LOCAL_APPS: list[str] = []
+LOCAL_APPS = [
+    "experiment",
+]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
