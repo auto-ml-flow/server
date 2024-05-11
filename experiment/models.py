@@ -1,6 +1,6 @@
 from django.db import models
 
-from auto_ml_flow.core.models import BaseModel
+from core.models import BaseModel
 
 
 class ExperimentModel(BaseModel):

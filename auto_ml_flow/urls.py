@@ -35,12 +35,12 @@ v1 = [
     path("docs/", include(docs_urlpatterns)),
     path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
-    path("", include("experiment.urls.rest"))
+    path("", include("experiment.api.urls")),
 ]
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/v1/", include(v1)),
-    path("", lambda request: render(request, 'index.html')),
-    path("experiments/", include("experiment.urls.templates"))
+    path("", lambda request: render(request, "index.html")),
+    path("experiments/", include("experiment.urls")),
 ]
