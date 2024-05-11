@@ -24,7 +24,7 @@ SECRET_KEY = (
     "SECRET_KEY",
     "django-insecure-o+lp4whc7t837=wgrcimc^k2zz)-_p6&ta6egg4ui=xf*7qx*6",
 )
-DEBUG = env.str("DEBUG", True)
+DEBUG = env.bool("DEBUG", True)
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["127.0.0.1", "localhost"])
 
 # Apps
