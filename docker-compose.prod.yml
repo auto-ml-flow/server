@@ -1,5 +1,6 @@
 services:
   auto_ml_flow:
+    container_name: auto_ml_flow
     image: mawlle/auto_ml_flow:latest
     restart: always
     env_file:
@@ -17,7 +18,7 @@ services:
       - WATCHTOWER_CLEANUP=true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: --interval 90 express_starter
+    command: --interval 30 auto_ml_flow
 
   postgres:
     image: postgres:14.1-alpine
