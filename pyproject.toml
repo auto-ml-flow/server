@@ -18,6 +18,8 @@ drf-spectacular = "^0.27.2"
 djangorestframework-simplejwt = "^5.3.1"
 pydantic = "^2.7.1"
 psycopg2 = "^2.9.9"
+psutil = "^5.9.8"
+pynvml = "^11.5.0"
 
 [tool.poetry.group.dev]
 optional = true
@@ -36,6 +38,13 @@ gunicorn = "~21.2.0"
 [tool.mypy]
 plugins = "pydantic.mypy"
 ignore_missing_imports = true
+exclude = [
+    'tmp/.*',
+    'tests/.*',
+    'venv',
+    '.venv',
+    '.*/migrations/.*',
+]
 
 [tool.isort]
 profile = "black"
@@ -108,10 +117,11 @@ extend-select = [
     # Ruff-specific rules
     "RUF",
 ]
-ignore = ["ANN101", "ANN102", "PLR0913", "RUF002", "RUF003", "S301"]
+ignore = ["ANN101", "ANN102", "PLR0913", "RUF002", "RUF003", "S301", "FBT001", "FBT002", "RUF012"]
 allowed-confusables = [
     "у", "е", "г", "х", "а", "р", "о", "с", "б", "У", "К", "Е", "Н", "З", "Х", "В", "А", "Р", "О", "С", "М", "Т", "Ь"
 ]
+
 
 [build-system]
 requires = ["poetry-core"]
