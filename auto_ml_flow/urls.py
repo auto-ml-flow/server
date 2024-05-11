@@ -16,7 +16,6 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.shortcuts import render
 from django.urls import include, path
 from drf_spectacular.views import (
     SpectacularAPIView,
@@ -41,6 +40,5 @@ v1 = [
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/v1/", include(v1)),
-    path("", lambda request: render(request, "index.html")),
-    path("experiments/", include("experiment.urls")),
+    path("", include("experiment.urls")),
 ]
