@@ -21,6 +21,8 @@ jobs:
       packages: write
       contents: read
       attestations: write
+      pages: write
+      id-token: write
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
