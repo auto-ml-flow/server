@@ -24,9 +24,9 @@ lint:
 	poetry run isort --check .
 
 format:
-	poetry run ruff check --fix .
 	poetry run ruff format .
 	poetry run isort .
+	poetry run ruff check --fix .
 
 clean:
 	find . -name "*.pyc" -exec rm -rf {} \;

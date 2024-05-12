@@ -35,6 +35,7 @@ v1 = [
     path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("", include("experiment.api.urls")),
+    path("", include("system.api.urls")),
 ]
 
 urlpatterns = [
