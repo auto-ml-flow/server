@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Детальная информация по эксперименту {{ experiment.name }}</h1>
+    <div>Здесь также показаны все запуски (конкретный запуск это отдельный запуск модели МО или нейронной сети)</div>
+    <hr>
+    <p>Эксперимент стартовал: {{ experiment.created_at|date:"D d M Y" }} {{ experiment.created_at|time:"H:i" }}</p>
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Runs</h3>
+                <table class="table table-striped table-bordered">
+                  <thead class="thead-dark">
+                      <tr>
+                          <th>Duration</th>
+                          <th>Status</th>
+                          <th>Description</th>
+                          <th>Created at</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {% for run in page_obj %}
+                          <tr>
+                              <td class="{% if run.status == 'FAILED' %}error{% endif %}">
+                                  <a href="{% url 'experiments:run-detail' run.id %}">{{ run.duration }}</a>
+                              </td>
+                              <td class="text-center col-md-4 {% if run.status == 'FAILED' %}error{% endif %}">
+                                  {{ run.status }}
+                              </td>
+                              <td class="{% if run.status == 'FAILED' %}error{% endif %}">
+                                {{ run.description }}
+                              </td>
+                              <td class="{% if run.status == 'FAILED' %}error{% endif %}">
+                                  {{ run.created_at }}
+                              </td>
+                          </tr>
+                      {% endfor %}
+                  </tbody>
+              </table>
+            
+                {% include "pagination.html" %}
+            </div>
+            <div class="col-md-6">
+                <canvas id="runDurationChart"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        var ctx = document.getElementById("runDurationChart").getContext("2d");
+        var runData = [];
+        var labels = [];
+      
+        {% for run in page_obj %}
+            data = new Date('{{ run.created_at|date:"c"|safe }}');
+            runData.push({
+                x: data,
+                y: {{ run.duration }}
+            });
+            labels.push(data);
+        {% endfor %}
+      
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            options: {
+              scales: {
+                xAxes: [{
+                  type: 'time',
+                }]
+              }
+            },
+            data: {
+              labels: labels,
+              datasets: [{
+                label: 'Duration',
+                data: runData,
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                  'rgba(255,99,132,1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+              }]
+            }
+          });
+    </script>
+    <style>
+      .table tbody tr > td.success {
+        background-color: #dff0d8 !important;
+      }
+      
+      .table tbody tr > td.error {
+        background-color: #f2dede !important;
+      }
+      
+      .table tbody tr > td.warning {
+        background-color: #fcf8e3 !important;
+      }
+      
+      .table tbody tr > td.info {
+        background-color: #d9edf7 !important;
+      }
+      
+      .table-hover tbody tr:hover > td.success {
+        background-color: #d0e9c6 !important;
+      }
+      
+      .table-hover tbody tr:hover > td.error {
+        background-color: #ebcccc !important;
+      }
+      
+      .table-hover tbody tr:hover > td.warning {
+        background-color: #faf2cc !important;
+      }
+      
+      .table-hover tbody tr:hover > td.info {
+        background-color: #c4e3f3 !important;
+      }
+    </style>
+    
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <h1>Все зарегистрированные системы на которых производились эксперименты</h1>
+    <hr>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name (setted by user)</th>
+                <th>CPU</th>
+                <th>GPU</th>
+                <th>RAM</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for system in systems %}
+            <tr>
+                <td><a href="{% url 'systems:detail' system.id %}">{{ system.name|default:"user_not_set_system_name" }}</a></td>
+                <td>{{ system.cpu_name }}</td>
+                <td>{{ system.gpu_name }}</td>
+                <td>{{ system.ram }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  
+    {% include "pagination.html" %}
+
+{% endblock %}
