@@ -26,7 +26,7 @@ class ExperimentDetailView(generic.detail.SingleObjectMixin, generic.ListView):
         context["experiment"] = self.object
         return context
 
-    def get_queryset(self): # noqa: ANN201
+    def get_queryset(self):  # noqa: ANN201
         return self.object.runs.all().order_by("-created_at", "id")
 
 

@@ -14,8 +14,8 @@
                       <tr>
                           <th>Duration</th>
                           <th>Status</th>
+                          <th>Description</th>
                           <th>Created at</th>
-                          <th>Updated at</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -28,10 +28,10 @@
                                   {{ run.status }}
                               </td>
                               <td class="{% if run.status == 'FAILED' %}error{% endif %}">
-                                  {{ run.created_at }}
+                                {{ run.description }}
                               </td>
                               <td class="{% if run.status == 'FAILED' %}error{% endif %}">
-                                  {{ run.updated_at }}
+                                  {{ run.created_at }}
                               </td>
                           </tr>
                       {% endfor %}

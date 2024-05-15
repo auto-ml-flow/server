@@ -1,3 +1,4 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import mixins
 
 from core.viewsets import GenericViewSet
@@ -14,6 +15,7 @@ class ExperimentViewSet(
 ):
     queryset = ExperimentModel.objects.all()
     serializer_class = ExperimentSerializer
+    lookup_field = "name"
 
 
 class RunViewSet(
@@ -32,3 +34,5 @@ class RunMetricViewSet(
 ):
     queryset = RunMetricModel.objects.all()
     serializer_class = RunMetricSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["run", "created_at"]

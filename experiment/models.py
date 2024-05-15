@@ -4,7 +4,7 @@ from core.models import BaseModel
 
 
 class ExperimentModel(BaseModel):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=500, unique=True)
 
 
 class RunModel(BaseModel):
@@ -22,6 +22,7 @@ class RunModel(BaseModel):
     experiment = models.ForeignKey(
         to=ExperimentModel, on_delete=models.CASCADE, related_name="runs"
     )
+    description = models.TextField(blank=True, null=True)
     duration = models.FloatField(blank=True, default=0)
     status = models.CharField(
         max_length=7,
