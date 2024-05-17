@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="col-sm-8">
     <h1>Детальная информация по эксперименту {{ experiment.name }}</h1>
     <div>Здесь также показаны все запуски (конкретный запуск это отдельный запуск модели МО или нейронной сети)</div>
     <hr>
@@ -15,7 +16,6 @@
                           <th>Duration</th>
                           <th>Status</th>
                           <th>Description</th>
-                          <th>Created at</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -30,9 +30,6 @@
                               <td class="{% if run.status == 'FAILED' %}error{% endif %}">
                                 {{ run.description }}
                               </td>
-                              <td class="{% if run.status == 'FAILED' %}error{% endif %}">
-                                  {{ run.created_at }}
-                              </td>
                           </tr>
                       {% endfor %}
                   </tbody>
@@ -45,7 +42,7 @@
             </div>
         </div>
     </div>
-    
+  </div>
     <script>
         var ctx = document.getElementById("runDurationChart").getContext("2d");
         var runData = [];

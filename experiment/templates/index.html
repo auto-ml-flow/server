@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="greeting">
+                <h1>Hello, researcher!</h1>
+                <div class="col-md-4">
+                    <p class="description">AutoMLFlow is a project inspired by MLFlow. Everyone here contributes to the common cause. By publishing the results of your experiments you are training a shared intelligence that will tell you how to do your job better. You can also find out what system requirements are used for different tasks and much more. Good luck!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card hoverable large-card">
+                <div class="card-content">
+                    <h2>Самый долгий эксперимент</h2>
+                    <p class="card-text">Duration: {{ longest_run.duration }} seconds</p>
+                    <p class="card-text">Description: {{ longest_run.description }}</p>
+                    <p class="card-text">Experiment: {{ longest_run.experiment.name }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card hoverable large-card">
+                        <div class="card-content">
+                            <h2>Самая популярная система</h2>
+                            <p class="card-text">CPU: {{ most_popular_system.cpu_name }}</p>
+                            <p class="card-text">GPU: {{ most_popular_system.gpu_name }}</p>
+                            <p class="card-text">RAM: {{ most_popular_system.ram }} MB</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card hoverable small-card">
+                        <div class="card-content">
+                            <h4>Количество систем</h4>
+                            <p class="card-text">{{ unique_systems_count }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card hoverable large-card">
+                <div class="card-content">
+                    <h2>Среднее использование ЦП</h2>
+                    <p class="card-text">{{ avg_cpu_utilization }}%</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card hoverable large-card">
+                <div class="card-content">
+                    <h2>Система с наибольшим использованием ОЗУ</h2>
+                    <p class="card-text">CPU: {{ highest_memory_usage_system.cpu_name }}</p>
+                    <p class="card-text">GPU: {{ highest_memory_usage_system.gpu_name }}</p>
+                    <p class="card-text">RAM: {{ highest_memory_usage_system.ram }} MB</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card hoverable large-card">
+                <div class="card-content">
+                    <h2>Общий сетевой трафик</h2>
+                    <p class="card-text">Получено: {{ total_network_traffic.total_receive }} MB</p>
+                    <p class="card-text">Передано: {{ total_network_traffic.total_transmit }} MB</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .greeting {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        text-align: left;
+    }
+
+    .greeting h1 {
+        font-size: 2.5rem;
+        color: #007bff;
+        margin-bottom: 1rem;
+    }
+
+    .description {
+        font-size: 1.25rem;
+        color: #6c757d;
+    }
+
+    .card {
+        background-color: #f5f5f5;
+        margin: 0.5rem 0;
+        border-radius: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    
+    .card:hover {
+        background-color: rgba(173, 216, 230, 0.3);
+        transform: translateY(-5px);
+    }
+    
+    .card-content h2 {
+        color: #007bff; /* Blue color */
+        transition: font-weight 0.3s ease; /* Add transition for font-weight */
+    }
+    
+    .card-content:hover h2 {
+        font-weight: bold; /* Make the font bold on hover */
+    }
+
+    .card-content h4 {
+        color: #007bff; /* Blue color */
+        transition: font-weight 0.3s ease; /* Add transition for font-weight */
+    }
+
+    .card-content:hover h4 {
+        font-weight: bold; /* Make the font bold on hover */
+    }
+    
+    .card-text {
+        font-size: 1.5rem;
+        color: #6c757d; /* Grey color */
+    }
+    
+    .large-card {
+        margin-top: 2rem;
+        height: calc(50vh - 1rem);
+    }
+    
+    .small-card {
+        margin-top: 2rem;
+        height: calc(50vh - 1rem);
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+{% endblock %}
