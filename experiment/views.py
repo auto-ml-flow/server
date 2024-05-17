@@ -63,8 +63,9 @@ def index_view(request) -> HttpResponse:
         MemoryStatsModel.objects.order_by('-usage_megabytes')
         .select_related('system')
         .first()
-        .system
     )
+    if highest_memory_usage_system:
+        highest_memory_usage_system.system
 
     # Total network traffic
     total_network_traffic = NetworkStatsModel.objects.aggregate(

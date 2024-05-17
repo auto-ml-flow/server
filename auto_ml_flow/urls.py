@@ -17,12 +17,15 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path
+from django.conf.urls.static import static
 from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularRedocView,
     SpectacularSwaggerView,
 )
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
+from auto_ml_flow import settings
 
 docs_urlpatterns = [
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
@@ -36,6 +39,7 @@ v1 = [
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("", include("experiment.api.urls")),
     path("", include("system.api.urls")),
+    path("", include("dataset.api.urls")),
 ]
 
 urlpatterns = [
@@ -43,4 +47,7 @@ urlpatterns = [
     path("api/v1/", include(v1)),
     path("", include("experiment.urls")),
     path("", include("system.urls")),
+    path("", include("dataset.urls")),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
