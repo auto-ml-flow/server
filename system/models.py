@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from core.models import BaseModel
+from experiment.models import RunModel
 
 
 class MemoryStatsModel(BaseModel):
@@ -45,15 +46,16 @@ class NetworkStatsModel(BaseModel):
 
 
 class SystemModel(BaseModel):
+    run = models.OneToOneField(to=RunModel, on_delete=models.SET_NULL, null=True)
     name = models.CharField(
         max_length=120, blank=True, null=True, verbose_name=_("Custom setted system name")
     )
     cpu_name = models.CharField(max_length=200)
     gpu_name = models.CharField(max_length=200, blank=True, null=True)
-    ram = models.IntegerField()
-    ram_available = models.IntegerField()
-    swap = models.IntegerField()
-    swap_available = models.IntegerField()
+    ram = models.BigIntegerField()
+    ram_available = models.BigIntegerField()
+    swap = models.BigIntegerField()
+    swap_available = models.BigIntegerField()
     load_avg_last_min = models.FloatField()
     load_avg_last_5_min = models.FloatField()
     load_avg_last_15_min = models.FloatField()
