@@ -2,9 +2,27 @@
 {% load static %}
 {% block content %}
 <div class="col-sm-8">
-    <h3 class="mt-4">Experiment: <a href="{% url 'experiments:detail' run.experiment.id %}">{{ run.experiment.name }}</a></h3>
-    <h3>Duration: {{ run.duration }}</h3>
-    <h3>Status: <span class="{% if run.status == 'FAILED' %}status-failed{% else %}status-done{% endif %}">{{ run.status }}</span></h3>
+    <h3 class="mt-4">Эксперимент: <a href="{% url 'experiments:detail' run.experiment.id %}">{{ run.experiment.name }}</a></h3>
+    {% if run.systemmodel.id %}
+        <h3>Система: <a href="{% url 'systems:detail' run.systemmodel.id %}">{{ run.systemmodel.cpu_name }}</a></h3>
+    {% endif %}
+
+    {% if run.dataset.id %}
+        <hr>
+            <h3>Датасет</h3>
+            <div class="col-sm-8">
+                <h5>Количество строк: {{ run.dataset.n_samples }}</h1>
+                <h5>Количество признаков: {{ run.dataset.n_features }}</h1>
+                <h5>Имя файла: {{ run.dataset.file.name }}</h1>
+                <h5>Размер файла: {{ run.dataset.file.size }} MB</h1>
+                <h5 class="mb-3">Дата загрузки: {{ run.dataset.created_at }}</h1>
+                <a href="{{ dataset.file.url }}" class="btn btn-primary">Скачать файл</a>
+            </div>
+        <hr>
+    {% endif %}
+
+    <h3>Продолжительность: {{ run.duration }}</h3>
+    <h3>Результат: <span class="{% if run.status == 'FAILED' %}status-failed{% else %}status-done{% endif %}">{{ run.status }}</span></h3>
     
     {% if run.description %}
         <hr>
@@ -121,13 +139,13 @@
 <style>
     .status-failed {
         color: red;
-        font-size: 2rem;
+        font-size: 2.25rem;
         font-weight: bold;
     }
 
     .status-done {
         color: gray;
-        font-size: 2rem;
+        font-size: 2.25rem;
         font-weight: bold;
     }
 
