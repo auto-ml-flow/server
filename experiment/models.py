@@ -5,6 +5,7 @@ from core.models import BaseModel
 
 class ExperimentModel(BaseModel):
     name = models.CharField(max_length=500, unique=True)
+    description = models.TextField(null=True, blank=True)
 
 
 class RunModel(BaseModel):
@@ -36,3 +37,15 @@ class RunMetricModel(BaseModel):
     key = models.CharField(max_length=100)
     value = models.FloatField()
     run = models.ForeignKey(to=RunModel, on_delete=models.CASCADE, related_name="metrics")
+
+
+class RunResultModel(BaseModel):
+    key = models.CharField(max_length=100)
+    value = models.FloatField()
+    run = models.ForeignKey(to=RunModel, on_delete=models.CASCADE, related_name="results")
+
+
+class RunParamModel(BaseModel):
+    key = models.CharField(max_length=100)
+    value = models.CharField()
+    run = models.ForeignKey(to=RunModel, on_delete=models.CASCADE, related_name="params")

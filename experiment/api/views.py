@@ -5,9 +5,17 @@ from core.viewsets import GenericViewSet
 from experiment.api.serializers import (
     ExperimentSerializer,
     RunMetricSerializer,
+    RunParamSerializer,
+    RunResultSerializer,
     RunSerializer,
 )
-from experiment.models import ExperimentModel, RunMetricModel, RunModel
+from experiment.models import (
+    ExperimentModel,
+    RunMetricModel,
+    RunModel,
+    RunParamModel,
+    RunResultModel,
+)
 
 
 class ExperimentViewSet(
@@ -34,5 +42,23 @@ class RunMetricViewSet(
 ):
     queryset = RunMetricModel.objects.all()
     serializer_class = RunMetricSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["run", "created_at"]
+
+
+class RunParamViewSet(
+    mixins.RetrieveModelMixin, mixins.ListModelMixin, mixins.CreateModelMixin, GenericViewSet
+):
+    queryset = RunParamModel.objects.all()
+    serializer_class = RunParamSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["run", "created_at"]
+
+
+class RunResultViewSet(
+    mixins.RetrieveModelMixin, mixins.ListModelMixin, mixins.CreateModelMixin, GenericViewSet
+):
+    queryset = RunResultModel.objects.all()
+    serializer_class = RunResultSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["run", "created_at"]

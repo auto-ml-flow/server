@@ -1,70 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    {% block title %} <title>Auto ML Flow</title> {% endblock %}
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    {% load i18n %}
+    {% block title %}
+        <title>{% trans "Auto ML Flow" %}</title>
+    {% endblock %}
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
     <!-- Add additional CSS in static file -->
     <style>
         /* Navigation bar styles */
-      .navbar-nav .nav-item {
-          transition: transform 0.3s ease;
-      }
-      
-      .navbar-nav .nav-item:hover {
-          transform: scale(1.1);
-      }
-      
-      .navbar-nav .nav-item:not(:hover) {
-          transform: scale(0.9);
-      }
-      
-      .navbar-nav .nav-link:hover {
-          box-shadow: none;
-      }
-      
-      .navbar-nav .nav-link {
-          outline: none;
-          background: none;
-      }
+        .navbar-nav .nav-item {
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-nav .nav-item:hover {
+            transform: scale(1.1);
+        }
+
+        .navbar-nav .nav-item:not(:hover) {
+            transform: scale(0.9);
+        }
+
+        .navbar-nav .nav-link:hover {
+            box-shadow: none;
+        }
+
+        .navbar-nav .nav-link {
+            outline: none;
+            background: none;
+        }
+
+        /* Gradient for the navigation panel */
+        .navbar {
+            background: linear-gradient(45deg, #007bff, #d303fc); /* Blue and purple gradient */
+        }
+
+        
+      /* Custom style for language change button */
+    .btn-language {
+      background-color: #6c757d !important; /* Gray color */
+      border-color: #6c757d !important; /* Gray color */
+  }
+
+  .btn-language:hover {
+      background-color: #495057 !important; /* Dark gray color */
+      border-color: #495057 !important; /* Dark gray color */
+  }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'experiments:index' %}">Auto ML Flow</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'experiments:list' %}">Experiments</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'systems:list' %}">Systems</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Datasets</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Models</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-2">
-                {% block sidebar %} {% endblock %}
-            </div>
-            {% block content %}{% endblock %}
+        <a class="navbar-brand" href="{% url 'experiments:index' %}">{% trans "Auto ML Flow" %}</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'experiments:list' %}">{% trans "Experiments" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'systems:list' %}">{% trans "Systems" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'datasets:list' %}">{% trans "Datasets" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{% trans "Models" %}</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                  <form action="{% url 'set_language' %}" method="post" class="d-flex">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ redirect_to }}"/>
+                    <select name="language" class="form-select me-2">
+                        <option value="ru">{% trans "Русский" %}</option>
+                        <option value="en">{% trans "English" %}</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary btn-language">{% trans "Set" %}</button>
+                </form>                
+                </li>
+            </ul>
         </div>
     </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-2">
+            {% block sidebar %}
+            {% endblock %}
+        </div>
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
 </body>
 </html>

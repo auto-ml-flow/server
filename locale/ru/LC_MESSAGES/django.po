@@ -1,0 +1,47 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-18 22:39+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: templates/base.html:6 templates/base.html:60
+msgid "Auto ML Flow"
+msgstr "Auto ML Flow"
+
+#: templates/base.html:68
+msgid "Experiments"
+msgstr "Эксперименты"
+
+#: templates/base.html:71
+msgid "Systems"
+msgstr "Системы"
+
+#: templates/base.html:74
+msgid "Datasets"
+msgstr "Датасеты"
+
+#: templates/base.html:77
+msgid "Models"
+msgstr "Модели"
+
+#: templates/base.html:86
+msgid "Русский"
+msgstr "Русский"
+
+#: templates/base.html:87
+msgid "English"
+msgstr "Английский"
+
+#: templates/base.html:89
+msgid "Set"
+msgstr "Установить"

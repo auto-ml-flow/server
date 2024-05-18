@@ -1,0 +1,206 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-18 22:45+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: experiment/templates/experiment/list.html:6
+msgid "General list of all conducted experiments"
+msgstr "Общий список всех проведённых экспериментов"
+
+#: experiment/templates/experiment/list.html:7
+msgid ""
+"Here are all available experiments that can be filtered by various parameters"
+msgstr ""
+"Здесь расположены все доступные эксперименты, которые можно фильтровать по "
+"различным параметрам"
+
+#: experiment/templates/experiment/list.html:12
+#: experiment/templates/run/detail.html:47
+#: experiment/templates/run/detail.html:66
+#: experiment/templates/run/detail.html:90
+msgid "Name"
+msgstr "Имя"
+
+#: experiment/templates/experiment/list.html:13
+#: experiment/templates/experiment/run_detail.html:19
+#: experiment/templates/index.html:21 experiment/templates/run/detail.html:29
+msgid "Description"
+msgstr "Описание"
+
+#: experiment/templates/experiment/list.html:14
+msgid "Created at"
+msgstr "Дата создания"
+
+#: experiment/templates/experiment/run_detail.html:5
+msgid "Detailed information about experiment"
+msgstr "Подробная информация об эксперименте"
+
+#: experiment/templates/experiment/run_detail.html:6
+msgid ""
+"Here are also shown all runs (a specific run is an individual run of a "
+"machine learning model or neural network)"
+msgstr ""
+"Здесь также показаны все запуски (конкретный запуск это отдельный запуск "
+"модели МО или нейронной сети)"
+
+#: experiment/templates/experiment/run_detail.html:8
+msgid "Experiment started:"
+msgstr "Эксперимент начат:"
+
+#: experiment/templates/experiment/run_detail.html:13
+msgid "Runs"
+msgstr "Запуски"
+
+#: experiment/templates/experiment/run_detail.html:17
+#: experiment/templates/index.html:20 experiment/templates/run/detail.html:24
+msgid "Duration"
+msgstr "Продолжительность"
+
+#: experiment/templates/experiment/run_detail.html:18
+msgid "Status"
+msgstr "Статус"
+
+#: experiment/templates/index.html:8
+msgid "Hello, researcher!"
+msgstr "Привет, исследователь!"
+
+#: experiment/templates/index.html:10
+msgid ""
+"AutoMLFlow is a project inspired by MLFlow. Everyone here contributes to the "
+"common cause. By publishing the results of your experiments you are training "
+"a shared intelligence that will tell you how to do your job better. You can "
+"also find out what system requirements are used for different tasks and much "
+"more. Good luck!"
+msgstr ""
+"AutoMLFlow - проект, вдохновлённый MLFlow. Здесь каждый вносит свой вклад в "
+"общее дело. Публикуя результаты своих экспериментов, вы обучаете общий "
+"интеллект, который поможет вам выполнить вашу работу лучше. Вы также можете "
+"узнать, какие системные требования используются для различных задач и многое "
+"другое. Удачи!"
+
+#: experiment/templates/index.html:19
+msgid "Longest Experiment"
+msgstr "Самый длительный эксперимент"
+
+#: experiment/templates/index.html:20
+msgid "seconds"
+msgstr "секунд"
+
+#: experiment/templates/index.html:22 experiment/templates/run/detail.html:5
+msgid "Experiment"
+msgstr "Эксперимент"
+
+#: experiment/templates/index.html:31
+msgid "Most Popular System"
+msgstr "Самая популярная система"
+
+#: experiment/templates/index.html:32 experiment/templates/index.html:62
+msgid "CPU"
+msgstr "Процессор"
+
+#: experiment/templates/index.html:33 experiment/templates/index.html:63
+msgid "GPU"
+msgstr "Видеокарта"
+
+#: experiment/templates/index.html:34 experiment/templates/index.html:64
+msgid "RAM"
+msgstr "ОЗУ"
+
+#: experiment/templates/index.html:41
+msgid "System Count"
+msgstr "Количество уникальных систем"
+
+#: experiment/templates/index.html:53
+msgid "Average CPU Utilization"
+msgstr "Средняя нагрузка ЦПУ"
+
+#: experiment/templates/index.html:61
+msgid "System with Highest Memory Usage"
+msgstr "Система с наибольшим потреблением ОЗУ"
+
+#: experiment/templates/index.html:73
+msgid "Total Network Traffic"
+msgstr "Сетевой траффик"
+
+#: experiment/templates/index.html:74
+msgid "Received"
+msgstr "Получено"
+
+#: experiment/templates/index.html:75
+msgid "Transmitted"
+msgstr "Передано"
+
+#: experiment/templates/run/detail.html:7
+msgid "System"
+msgstr "Система"
+
+#: experiment/templates/run/detail.html:12
+msgid "Dataset"
+msgstr "Датасет"
+
+#: experiment/templates/run/detail.html:14
+msgid "Number of Samples"
+msgstr "Количество строк"
+
+#: experiment/templates/run/detail.html:15
+msgid "Number of Features"
+msgstr "Количество признаков"
+
+#: experiment/templates/run/detail.html:16
+#, fuzzy
+#| msgid "Name"
+msgid "File Name"
+msgstr "Имя"
+
+#: experiment/templates/run/detail.html:17
+msgid "File Size"
+msgstr "Размер файла"
+
+#: experiment/templates/run/detail.html:18
+msgid "Upload Date"
+msgstr "Дата загрузки"
+
+#: experiment/templates/run/detail.html:19
+msgid "Download File"
+msgstr "Скачать файл"
+
+#: experiment/templates/run/detail.html:25
+msgid "Result"
+msgstr "Результат"
+
+#: experiment/templates/run/detail.html:35
+msgid "Traceback"
+msgstr "Traceback"
+
+#: experiment/templates/run/detail.html:37
+msgid "Copy Traceback"
+msgstr "Скопировать"
+
+#: experiment/templates/run/detail.html:43
+msgid "Model Params"
+msgstr "Параметры модели"
+
+#: experiment/templates/run/detail.html:48
+#: experiment/templates/run/detail.html:67
+#: experiment/templates/run/detail.html:91
+msgid "Value"
+msgstr "Значение"
+
+#: experiment/templates/run/detail.html:62
+msgid "Model Results"
+msgstr "Результаты модели"
+
+#: experiment/templates/run/detail.html:83
+msgid "Metrics"
+msgstr "Метрики"

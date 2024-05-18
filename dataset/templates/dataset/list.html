@@ -1,16 +1,16 @@
 {% extends "base.html" %}
-{% load static %}
+{% load i18n %}
 
 {% block content %}
 <div class="col-sm-8">
-    <h1>Все датасеты на которых производились эксперименты</h1>
+    <h1>{% trans "All datasets used in experiments" %}</h1>
     <hr>
     <table class="table table-striped table-bordered">
         <thead class="thead-dark">
             <tr>
-                <th>Количество строк</th>
-                <th>Количество признаков</th>
-                <th>Скачать</th>
+                <th>{% trans "Number of samples" %}</th>
+                <th>{% trans "Number of features" %}</th>
+                <th>{% trans "Download" %}</th>
             </tr>
         </thead>
         <tbody>
@@ -18,7 +18,7 @@
             <tr>
                 <td>{{ dataset.n_samples }}</td>
                 <td>{{ dataset.n_features }}</td>
-                <td><a href="{{ dataset.file.url }}">Скачать</a></td>
+                <td><a href="{{ dataset.file.url }}">{% trans "Download" %}</a></td>
             </tr>
             {% endfor %}
         </tbody>

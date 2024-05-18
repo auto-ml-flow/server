@@ -8,4 +8,3 @@ class DatasetSerializer(serializers.ModelSerializer):
         model = DatasetModel
         fields = "__all__"
         read_only_fields = ("updated_at",)
-

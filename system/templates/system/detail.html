@@ -1,10 +1,12 @@
 {% extends "base.html" %}
+{% load i18n %}
+{% load static%}
 {% block content %}
-    <h1>Выбранная система: {{ system.cpu_name }}/{{ system.ram }} MB </h1>
+    <h1>{% trans "Selected system" %}: {{ system.cpu_name }}/{{ system.ram }} MB </h1>
     <hr>
-    <p>Система зарегистрирована: {{ system.created_at }}</p>
+    <p>{% trans "System registered" %}: {{ system.created_at }}</p>
     <hr>
-    <h2>Memory Stats</h2>
+    <h2>{% trans "Memory Stats" %}</h2>
     <div class="row">
         <div class="col-md-6">
             <canvas id="memoryUsageMegabytesChart"></canvas>
@@ -14,33 +16,33 @@
         </div>
     </div>
     <div class="mt-3 mb-3">
-        <button onclick="toggleTable('memoryStatsTable')" class="btn btn-primary btn-lg">View All Metrics</button>
+        <button onclick="toggleTable('memoryStatsTable')" class="btn btn-primary btn-lg">{% trans "View All Metrics" %}</button>
     </div>
     <table id="memoryStatsTable" class="table table-striped table-bordered" style="display: none;">
         <tr>
-            <th>Usage (MB)</th>
-            <th>Usage (%)</th>
+            <th>{% trans "Usage (MB)" %}</th>
+            <th>{% trans "Usage (%)" %}</th>
         </tr>
         {% for memory_stat in system.system_statistics.all %}
         <tr>
-            <td>{{ memory_stat.usage_megabytes }}</td>
-            <td>{{ memory_stat.usage_percentage }}</td>
+            <td>{{ memory_stat.usage_megabytes|safe }}</td>
+            <td>{{ memory_stat.usage_percentage|safe }}</td>
         </tr>
         {% endfor %}
     </table>
 
-    <h2>CPU Stats</h2>
+    <h2>{% trans "CPU Stats" %}</h2>
     <div class="row">
         <div class="col-md-6">
             <canvas id="cpuUtilizationChart"></canvas>
         </div>
     </div>
     <div class="mt-3 mb-3">
-        <button onclick="toggleTable('cpuStatsTable')" class="btn btn-primary btn-lg">View All Metrics</button>
+        <button onclick="toggleTable('cpuStatsTable')" class="btn btn-primary btn-lg">{% trans "View All Metrics" %}</button>
     </div>
     <table id="cpuStatsTable" class="table table-striped table-bordered" style="display: none;">
         <tr>
-            <th>Utilization (%)</th>
+            <th>{% trans "Utilization (%)" %}</th>
         </tr>
         {% for cpu_stat in system.cpu_statistics.all %}
         <tr>
@@ -49,7 +51,7 @@
         {% endfor %}
     </table>
 
-    <h2>Disk Stats</h2>
+    <h2>{% trans "Disk Stats" %}</h2>
     <div class="row">
         <div class="col-md-6">
             <canvas id="usagePercentageChart"></canvas>
@@ -58,25 +60,25 @@
             <canvas id="usageMegabytesChart"></canvas>
         </div>
         <div class="mt-3 mb-3">
-            <button onclick="toggleTable('diskStatsTable')" class="btn btn-primary btn-lg">View All Metrics</button>
+            <button onclick="toggleTable('diskStatsTable')" class="btn btn-primary btn-lg">{% trans "View All Metrics" %}</button>
         </div>
     </div>
     <table id="diskStatsTable" class="table table-striped table-bordered" style="display: none;">
         <tr>
-            <th>Usage (%)</th>
-            <th>Usage (MB)</th>
-            <th>Available Space</th>
+            <th>{% trans "Usage (%)" %}</th>
+            <th>{% trans "Usage (MB)" %}</th>
+            <th>{% trans "Available Space" %}</th>
         </tr>
         {% for disk_stat in system.disk_statistics.all %}
         <tr>
-            <td>{{ disk_stat.usage_percentage }}</td>
-            <td>{{ disk_stat.usage_megabytes }}</td>
-            <td>{{ disk_stat.available }}</td>
+            <td>{{ disk_stat.usage_percentage|safe }}</td>
+            <td>{{ disk_stat.usage_megabytes|safe }}</td>
+            <td>{{ disk_stat.available|safe }}</td>
         </tr>
         {% endfor %}
     </table>
 
-    <h2>Network Stats</h2>
+    <h2>{% trans "Network Stats" %}</h2>
     <div class="row">
         <div class="col-md-6">
             <canvas id="networkReceiveStatsChart"></canvas>
@@ -85,13 +87,13 @@
             <canvas id="networkTransmitStatsChart"></canvas>
         </div>
         <div class="col-md-4 mt-3 mb-3">
-            <button onclick="toggleTable('metricsTable')" class="btn btn-primary btn-lg">View All Metrics</button>
+            <button onclick="toggleTable('metricsTable')" class="btn btn-primary btn-lg">{% trans "View All Metrics" %}</button>
         </div>
     </div>
     <table id="metricsTable" class="table table-striped table-bordered" style="display: none;">
         <tr>
-            <th>Receive (MB)</th>
-            <th>Transmit (MB)</th>
+            <th>{% trans "Receive (MB)" %}</th>
+            <th>{% trans "Transmit (MB)" %}</th>
         </tr>
         {% for network_stat in system.network_statistics.all %}
         <tr>
@@ -124,27 +126,27 @@
             };
 
             {% for stat in system.system_statistics.all %}
-                data.memoryUsageMegabytes.push({{ stat.usage_megabytes }});
-                data.memoryUsagePercentage.push({{ stat.usage_percentage }});
-                data.labelsMemory.push(new Date('{{ stat.created_at|date:"c" }}'));
+                data.memoryUsageMegabytes.push({{ stat.usage_megabytes|safe }});
+                data.memoryUsagePercentage.push({{ stat.usage_percentage|safe }});
+                data.labelsMemory.push(new Date('{{ stat.created_at|date:"c"|safe }}'));
             {% endfor %}
 
             {% for stat in system.cpu_statistics.all %}
-                data.cpuUtilization.push({{ stat.utilization }});
-                data.labelsCPU.push(new Date('{{ stat.created_at|date:"c" }}'));
+                data.cpuUtilization.push({{ stat.utilization|safe }});
+                data.labelsCPU.push(new Date('{{ stat.created_at|date:"c"|safe }}'));
             {% endfor %}
 
             {% for stat in system.disk_statistics.all %}
-                data.usagePercentage.push({{ stat.usage_percentage }});
-                data.usageMegabytes.push({{ stat.usage_megabytes }});
-                data.available.push({{ stat.available }});
-                data.labelsDisk.push(new Date('{{ stat.created_at|date:"c" }}'));
+                data.usagePercentage.push({{ stat.usage_percentage|safe }});
+                data.usageMegabytes.push({{ stat.usage_megabytes|safe }});
+                data.available.push({{ stat.available|safe }});
+                data.labelsDisk.push(new Date('{{ stat.created_at|date:"c"|safe }}'));
             {% endfor %}
 
             {% for stat in system.network_statistics.all %}
-                data.networkReceive.push({{ stat.receive_megabytes }});
-                data.networkTransmit.push({{ stat.transmit_megabytes }});
-                data.labelsNetwork.push(new Date('{{ stat.created_at|date:"c" }}'));
+                data.networkReceive.push({{ stat.receive_megabytes|safe }});
+                data.networkTransmit.push({{ stat.transmit_megabytes|safe }});
+                data.labelsNetwork.push(new Date('{{ stat.created_at|date:"c"|safe }}'));
             {% endfor %}
 
             const chartConfigs = [

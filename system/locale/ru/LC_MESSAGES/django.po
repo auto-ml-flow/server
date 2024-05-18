@@ -1,0 +1,140 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-18 22:45+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: system/models.py:9
+msgid "System memory usage megabytes"
+msgstr "Использование памяти системы в мегабайтах"
+
+#: system/models.py:10
+msgid "System memory usage percentage"
+msgstr "Процент использования памяти системы"
+
+#: system/models.py:19
+msgid "CPU utilization percentage"
+msgstr "Процент использования ЦП"
+
+#: system/models.py:28
+msgid "Disk usage percentage"
+msgstr "Процент использования диска"
+
+#: system/models.py:29
+msgid "Disk usage megabytes"
+msgstr "Использование диска в мегабайтах"
+
+#: system/models.py:30
+msgid "Available disk space"
+msgstr "Доступное дисковое пространство"
+
+#: system/models.py:39
+msgid "Network recieved megabytes"
+msgstr "Полученные данные сети в мегабайтах"
+
+#: system/models.py:40
+msgid "Network transmitted megabytes"
+msgstr "Переданные данные сети в мегабайтах"
+
+#: system/models.py:51
+msgid "Custom setted system name"
+msgstr "Пользовательское имя системы"
+
+#: system/templates/system/detail.html:4
+msgid "Selected system"
+msgstr "Выбранная система"
+
+#: system/templates/system/detail.html:6
+msgid "System registered"
+msgstr "Система зарегистрирована"
+
+#: system/templates/system/detail.html:8
+msgid "Memory Stats"
+msgstr "Статистика памяти"
+
+#: system/templates/system/detail.html:18
+#: system/templates/system/detail.html:40
+#: system/templates/system/detail.html:62
+#: system/templates/system/detail.html:89
+msgid "View All Metrics"
+msgstr "Посмотреть все метрики"
+
+#: system/templates/system/detail.html:22
+#: system/templates/system/detail.html:68
+msgid "Usage (MB)"
+msgstr "Использование (МБ)"
+
+#: system/templates/system/detail.html:23
+#: system/templates/system/detail.html:67
+#, python-format
+msgid "Usage (%%)"
+msgstr "Использование (%%)"
+
+#: system/templates/system/detail.html:33
+msgid "CPU Stats"
+msgstr "Статистика ЦП"
+
+#: system/templates/system/detail.html:44
+#, python-format
+msgid "Utilization (%%)"
+msgstr "Использование (%%)"
+
+#: system/templates/system/detail.html:53
+msgid "Disk Stats"
+msgstr "Статистика диска"
+
+#: system/templates/system/detail.html:69
+msgid "Available Space"
+msgstr "Доступное пространство"
+
+#: system/templates/system/detail.html:80
+msgid "Network Stats"
+msgstr "Статистика сети"
+
+#: system/templates/system/detail.html:94
+msgid "Receive (MB)"
+msgstr "Получено (МБ)"
+
+#: system/templates/system/detail.html:95
+msgid "Transmit (MB)"
+msgstr "Передано (МБ)"
+
+#: system/templates/system/list.html:5
+msgid "All registered systems on which experiments were performed"
+msgstr "Все зарегистрированные системы, на которых проводились эксперименты"
+
+#: system/templates/system/list.html:6
+msgid "Show only unique"
+msgstr "Показать только уникальные"
+
+#: system/templates/system/list.html:11
+msgid "CPU"
+msgstr "ЦП"
+
+#: system/templates/system/list.html:12
+msgid "GPU"
+msgstr "GPU"
+
+#: system/templates/system/list.html:13
+msgid "RAM"
+msgstr "ОЗУ"
+
+#: system/templates/system/list.html:14
+msgid "Name (setted by user)"
+msgstr "Имя (задано пользователем)"

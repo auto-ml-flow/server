@@ -1,13 +1,13 @@
 {% extends "base.html" %}
-{% load static %}
+{% load i18n static humanize %}
 {% block content %}
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <div class="greeting">
-                <h1>Hello, researcher!</h1>
+                <h1>{% trans "Hello, researcher!" %}</h1>
                 <div class="col-md-4">
-                    <p class="description">AutoMLFlow is a project inspired by MLFlow. Everyone here contributes to the common cause. By publishing the results of your experiments you are training a shared intelligence that will tell you how to do your job better. You can also find out what system requirements are used for different tasks and much more. Good luck!</p>
+                    <p class="description">{% trans "AutoMLFlow is a project inspired by MLFlow. Everyone here contributes to the common cause. By publishing the results of your experiments you are training a shared intelligence that will tell you how to do your job better. You can also find out what system requirements are used for different tasks and much more. Good luck!" %}</p>
                 </div>
             </div>
         </div>
@@ -16,29 +16,29 @@
         <div class="col-md-6">
             <div class="card hoverable large-card">
                 <div class="card-content">
-                    <h2>Самый долгий эксперимент</h2>
-                    <p class="card-text">Duration: {{ longest_run.duration }} seconds</p>
-                    <p class="card-text">Description: {{ longest_run.description }}</p>
-                    <p class="card-text">Experiment: {{ longest_run.experiment.name }}</p>
+                    <h2><a href="{% url 'experiments:run-detail' longest_run.id %}">{% trans "Longest Experiment" %}</a></h2>
+                    <p class="card-text">{% trans "Duration" %}: {{ longest_run.duration|floatformat:2 }} {% trans "seconds" %}</p>
+                    <p class="card-text">{% trans "Description" %}: {{ longest_run.description }}</p>
+                    <p class="card-text">{% trans "Experiment" %}: {{ longest_run.experiment.name }}</p>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <div class="card hoverable large-card">
-                        <div class="card-content">
-                            <h2>Самая популярная система</h2>
-                            <p class="card-text">CPU: {{ most_popular_system.cpu_name }}</p>
-                            <p class="card-text">GPU: {{ most_popular_system.gpu_name }}</p>
-                            <p class="card-text">RAM: {{ most_popular_system.ram }} MB</p>
+                        <div class="card-content"> 
+                            <h2><a href="{% url 'systems:detail' most_popular_system.id %}">{% trans "Most Popular System" %}</a></h2>
+                            <p class="card-text">{% trans "CPU" %}: {{ most_popular_system.cpu_name }}</p>
+                            <p class="card-text">{% trans "GPU" %}: {{ most_popular_system.gpu_name }}</p>
+                            <p class="card-text">{% trans "RAM" %}: {{ most_popular_system.ram }} MB</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="card hoverable small-card">
                         <div class="card-content">
-                            <h4>Количество систем</h4>
+                            <h2 class="system-count-heading">{% trans "System Count" %}</h2>
                             <p class="card-text">{{ unique_systems_count }}</p>
                         </div>
                     </div>
@@ -50,18 +50,18 @@
         <div class="col-md-6">
             <div class="card hoverable large-card">
                 <div class="card-content">
-                    <h2>Среднее использование ЦП</h2>
-                    <p class="card-text">{{ avg_cpu_utilization }}%</p>
+                    <h2>{% trans "Average CPU Utilization" %}</h2>
+                    <p class="card-text">{{ avg_cpu_utilization|floatformat:2 }}%</p>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="card hoverable large-card">
                 <div class="card-content">
-                    <h2>Система с наибольшим использованием ОЗУ</h2>
-                    <p class="card-text">CPU: {{ highest_memory_usage_system.cpu_name }}</p>
-                    <p class="card-text">GPU: {{ highest_memory_usage_system.gpu_name }}</p>
-                    <p class="card-text">RAM: {{ highest_memory_usage_system.ram }} MB</p>
+                    <h2><a href="{% url 'systems:detail' highest_memory_usage_system.system.id %}">{% trans "System with Highest Memory Usage" %}</a></h2>
+                    <p class="card-text">{% trans "CPU" %}: {{ highest_memory_usage_system.system.cpu_name }}</p>
+                    <p class="card-text">{% trans "GPU" %}: {{ highest_memory_usage_system.system.gpu_name }}</p>
+                    <p class="card-text">{% trans "RAM" %}: {{ highest_memory_usage_system.system.ram|floatformat }} MB</p>
                 </div>
             </div>
         </div>
@@ -70,9 +70,9 @@
         <div class="col-md-12">
             <div class="card hoverable large-card">
                 <div class="card-content">
-                    <h2>Общий сетевой трафик</h2>
-                    <p class="card-text">Получено: {{ total_network_traffic.total_receive }} MB</p>
-                    <p class="card-text">Передано: {{ total_network_traffic.total_transmit }} MB</p>
+                    <h2>{% trans "Total Network Traffic" %}</h2>
+                    <p class="card-text">{% trans "Received" %}: {{ total_network_traffic.total_receive|filesizeformat }}</p>
+                    <p class="card-text">{% trans "Transmitted" %}: {{ total_network_traffic.total_transmit|filesizeformat }}</p>
                 </div>
             </div>
         </div>
@@ -87,7 +87,9 @@
 
     .greeting h1 {
         font-size: 2.5rem;
-        color: #007bff;
+        background: linear-gradient(45deg, #007bff, #6c757d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         margin-bottom: 1rem;
     }
 
@@ -101,30 +103,49 @@
         margin: 0.5rem 0;
         border-radius: 20px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        transition: background-color 0.3s ease, transform 0.3s ease;
+        transition: background-color 0.3s ease;
     }
     
-    .card:hover {
+    .large-card:hover {
         background-color: rgba(173, 216, 230, 0.3);
         transform: translateY(-5px);
     }
     
-    .card-content h2 {
-        color: #007bff; /* Blue color */
-        transition: font-weight 0.3s ease; /* Add transition for font-weight */
+    .small-card:hover {
+        background-color: rgba(173, 216, 230, 0.3);
     }
     
-    .card-content:hover h2 {
-        font-weight: bold; /* Make the font bold on hover */
+    .card-content h2,
+    .card-content h4,
+    .system-count-heading {
+        background: linear-gradient(to right, #d3d3d3, #d3d3d3);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: font-weight 0.3s ease, background 0.3s ease;
+    }
+    
+    .card-content:hover h2,
+    .card-content:hover h4,
+    .card-content:hover .system-count-heading {
+        font-weight: bold;
     }
 
-    .card-content h4 {
-        color: #007bff; /* Blue color */
-        transition: font-weight 0.3s ease; /* Add transition for font-weight */
+    .card-content h2 a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .card-content:hover h2,
+    .card-content:hover .system-count-heading {
+        background: linear-gradient(to right, #007bff, #0056b3);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
 
     .card-content:hover h4 {
-        font-weight: bold; /* Make the font bold on hover */
+        background: linear-gradient(to right, #007bff, #d303fc);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
     
     .card-text {

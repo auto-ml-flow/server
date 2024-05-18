@@ -1,21 +1,23 @@
 {% extends "base.html" %}
+{% load i18n static humanize %}
+
 {% block content %}
 <div class="col-sm-8">
-    <h1>Детальная информация по эксперименту {{ experiment.name }}</h1>
-    <div>Здесь также показаны все запуски (конкретный запуск это отдельный запуск модели МО или нейронной сети)</div>
+    <h1>{% trans "Detailed information about experiment" %} {{ experiment.name }}</h1>
+    <div>{% trans "Here are also shown all runs (a specific run is an individual run of a machine learning model or neural network)" %}</div>
     <hr>
-    <p>Эксперимент стартовал: {{ experiment.created_at|date:"D d M Y" }} {{ experiment.created_at|time:"H:i" }}</p>
+    <p>{% trans "Experiment started:" %} {{ experiment.created_at|naturaltime }} {{ experiment.created_at|time:"H:i" }}</p>
     <hr>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h3>Runs</h3>
+                <h3>{% trans "Runs" %}</h3>
                 <table class="table table-striped table-bordered">
                   <thead class="thead-dark">
                       <tr>
-                          <th>Duration</th>
-                          <th>Status</th>
-                          <th>Description</th>
+                          <th>{% trans "Duration" %}</th>
+                          <th>{% trans "Status" %}</th>
+                          <th>{% trans "Description" %}</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -49,12 +51,12 @@
         var labels = [];
       
         {% for run in page_obj %}
-            data = new Date('{{ run.created_at|date:"c"|safe }}');
-            runData.push({
-                x: data,
-                y: {{ run.duration }}
-            });
-            labels.push(data);
+          data = new Date('{{ run.created_at|date:"c"|safe }}');
+          runData.push({
+              x: data,
+              y: {{ run.duration|safe }}
+          });
+          labels.push(data);
         {% endfor %}
       
         var myChart = new Chart(ctx, {
