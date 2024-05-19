@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-18 22:39+0300\n"
+"POT-Creation-Date: 2024-05-20 01:39+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,34 +14,34 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: templates/base.html:6 templates/base.html:60
+#: templates/base.html:6 templates/base.html:61
 msgid "Auto ML Flow"
 msgstr "Auto ML Flow"
 
-#: templates/base.html:68
+#: templates/base.html:69
 msgid "Experiments"
 msgstr "Эксперименты"
 
-#: templates/base.html:71
+#: templates/base.html:72
 msgid "Systems"
 msgstr "Системы"
 
-#: templates/base.html:74
+#: templates/base.html:75
 msgid "Datasets"
 msgstr "Датасеты"
 
-#: templates/base.html:77
+#: templates/base.html:78
 msgid "Models"
 msgstr "Модели"
 
-#: templates/base.html:86
+#: templates/base.html:87
 msgid "Русский"
 msgstr "Русский"
 
-#: templates/base.html:87
+#: templates/base.html:88
 msgid "English"
 msgstr "Английский"
 
-#: templates/base.html:89
+#: templates/base.html:90
 msgid "Set"
 msgstr "Установить"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-18 22:45+0300\n"
+"POT-Creation-Date: 2024-05-20 01:39+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,15 +26,15 @@ msgstr ""
 "различным параметрам"
 
 #: experiment/templates/experiment/list.html:12
-#: experiment/templates/run/detail.html:47
-#: experiment/templates/run/detail.html:66
-#: experiment/templates/run/detail.html:90
+#: experiment/templates/run/detail.html:48
+#: experiment/templates/run/detail.html:67
+#: experiment/templates/run/detail.html:92
 msgid "Name"
 msgstr "Имя"
 
 #: experiment/templates/experiment/list.html:13
-#: experiment/templates/experiment/run_detail.html:19
-#: experiment/templates/index.html:21 experiment/templates/run/detail.html:29
+#: experiment/templates/experiment/run_detail.html:20
+#: experiment/templates/index.html:21 experiment/templates/run/detail.html:30
 msgid "Description"
 msgstr "Описание"
 
@@ -42,11 +42,11 @@ msgstr "Описание"
 msgid "Created at"
 msgstr "Дата создания"
 
-#: experiment/templates/experiment/run_detail.html:5
+#: experiment/templates/experiment/run_detail.html:6
 msgid "Detailed information about experiment"
 msgstr "Подробная информация об эксперименте"
 
-#: experiment/templates/experiment/run_detail.html:6
+#: experiment/templates/experiment/run_detail.html:7
 msgid ""
 "Here are also shown all runs (a specific run is an individual run of a "
 "machine learning model or neural network)"
@@ -54,20 +54,20 @@ msgstr ""
 "Здесь также показаны все запуски (конкретный запуск это отдельный запуск "
 "модели МО или нейронной сети)"
 
-#: experiment/templates/experiment/run_detail.html:8
+#: experiment/templates/experiment/run_detail.html:9
 msgid "Experiment started:"
 msgstr "Эксперимент начат:"
 
-#: experiment/templates/experiment/run_detail.html:13
+#: experiment/templates/experiment/run_detail.html:14
 msgid "Runs"
 msgstr "Запуски"
 
-#: experiment/templates/experiment/run_detail.html:17
-#: experiment/templates/index.html:20 experiment/templates/run/detail.html:24
+#: experiment/templates/experiment/run_detail.html:18
+#: experiment/templates/index.html:20 experiment/templates/run/detail.html:25
 msgid "Duration"
 msgstr "Продолжительность"
 
-#: experiment/templates/experiment/run_detail.html:18
+#: experiment/templates/experiment/run_detail.html:19
 msgid "Status"
 msgstr "Статус"
 
@@ -97,7 +97,7 @@ msgstr "Самый длительный эксперимент"
 msgid "seconds"
 msgstr "секунд"
 
-#: experiment/templates/index.html:22 experiment/templates/run/detail.html:5
+#: experiment/templates/index.html:22 experiment/templates/run/detail.html:6
 msgid "Experiment"
 msgstr "Эксперимент"
 
@@ -141,66 +141,66 @@ msgstr "Получено"
 msgid "Transmitted"
 msgstr "Передано"
 
-#: experiment/templates/run/detail.html:7
+#: experiment/templates/run/detail.html:8
 msgid "System"
 msgstr "Система"
 
-#: experiment/templates/run/detail.html:12
+#: experiment/templates/run/detail.html:13
 msgid "Dataset"
 msgstr "Датасет"
 
-#: experiment/templates/run/detail.html:14
+#: experiment/templates/run/detail.html:15
 msgid "Number of Samples"
 msgstr "Количество строк"
 
-#: experiment/templates/run/detail.html:15
+#: experiment/templates/run/detail.html:16
 msgid "Number of Features"
 msgstr "Количество признаков"
 
-#: experiment/templates/run/detail.html:16
+#: experiment/templates/run/detail.html:17
 #, fuzzy
 #| msgid "Name"
 msgid "File Name"
 msgstr "Имя"
 
-#: experiment/templates/run/detail.html:17
+#: experiment/templates/run/detail.html:18
 msgid "File Size"
 msgstr "Размер файла"
 
-#: experiment/templates/run/detail.html:18
+#: experiment/templates/run/detail.html:19
 msgid "Upload Date"
 msgstr "Дата загрузки"
 
-#: experiment/templates/run/detail.html:19
+#: experiment/templates/run/detail.html:20
 msgid "Download File"
 msgstr "Скачать файл"
 
-#: experiment/templates/run/detail.html:25
+#: experiment/templates/run/detail.html:26
 msgid "Result"
 msgstr "Результат"
 
-#: experiment/templates/run/detail.html:35
+#: experiment/templates/run/detail.html:36
 msgid "Traceback"
 msgstr "Traceback"
 
-#: experiment/templates/run/detail.html:37
+#: experiment/templates/run/detail.html:38
 msgid "Copy Traceback"
 msgstr "Скопировать"
 
-#: experiment/templates/run/detail.html:43
+#: experiment/templates/run/detail.html:44
 msgid "Model Params"
 msgstr "Параметры модели"
 
-#: experiment/templates/run/detail.html:48
-#: experiment/templates/run/detail.html:67
-#: experiment/templates/run/detail.html:91
+#: experiment/templates/run/detail.html:49
+#: experiment/templates/run/detail.html:68
+#: experiment/templates/run/detail.html:93
 msgid "Value"
 msgstr "Значение"
 
-#: experiment/templates/run/detail.html:62
+#: experiment/templates/run/detail.html:63
 msgid "Model Results"
 msgstr "Результаты модели"
 
-#: experiment/templates/run/detail.html:83
+#: experiment/templates/run/detail.html:85
 msgid "Metrics"
 msgstr "Метрики"

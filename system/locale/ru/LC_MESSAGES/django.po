@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-18 22:45+0300\n"
+"POT-Creation-Date: 2024-05-20 01:39+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,62 +56,62 @@ msgstr "Переданные данные сети в мегабайтах"
 msgid "Custom setted system name"
 msgstr "Пользовательское имя системы"
 
-#: system/templates/system/detail.html:4
+#: system/templates/system/detail.html:5
 msgid "Selected system"
 msgstr "Выбранная система"
 
-#: system/templates/system/detail.html:6
+#: system/templates/system/detail.html:7
 msgid "System registered"
 msgstr "Система зарегистрирована"
 
-#: system/templates/system/detail.html:8
+#: system/templates/system/detail.html:9
 msgid "Memory Stats"
 msgstr "Статистика памяти"
 
-#: system/templates/system/detail.html:18
-#: system/templates/system/detail.html:40
-#: system/templates/system/detail.html:62
-#: system/templates/system/detail.html:89
+#: system/templates/system/detail.html:19
+#: system/templates/system/detail.html:41
+#: system/templates/system/detail.html:63
+#: system/templates/system/detail.html:90
 msgid "View All Metrics"
 msgstr "Посмотреть все метрики"
 
-#: system/templates/system/detail.html:22
-#: system/templates/system/detail.html:68
+#: system/templates/system/detail.html:23
+#: system/templates/system/detail.html:69
 msgid "Usage (MB)"
 msgstr "Использование (МБ)"
 
-#: system/templates/system/detail.html:23
-#: system/templates/system/detail.html:67
+#: system/templates/system/detail.html:24
+#: system/templates/system/detail.html:68
 #, python-format
 msgid "Usage (%%)"
 msgstr "Использование (%%)"
 
-#: system/templates/system/detail.html:33
+#: system/templates/system/detail.html:34
 msgid "CPU Stats"
 msgstr "Статистика ЦП"
 
-#: system/templates/system/detail.html:44
+#: system/templates/system/detail.html:45
 #, python-format
 msgid "Utilization (%%)"
 msgstr "Использование (%%)"
 
-#: system/templates/system/detail.html:53
+#: system/templates/system/detail.html:54
 msgid "Disk Stats"
 msgstr "Статистика диска"
 
-#: system/templates/system/detail.html:69
+#: system/templates/system/detail.html:70
 msgid "Available Space"
 msgstr "Доступное пространство"
 
-#: system/templates/system/detail.html:80
+#: system/templates/system/detail.html:81
 msgid "Network Stats"
 msgstr "Статистика сети"
 
-#: system/templates/system/detail.html:94
+#: system/templates/system/detail.html:95
 msgid "Receive (MB)"
 msgstr "Получено (МБ)"
 
-#: system/templates/system/detail.html:95
+#: system/templates/system/detail.html:96
 msgid "Transmit (MB)"
 msgstr "Передано (МБ)"
 
@@ -119,22 +119,21 @@ msgstr "Передано (МБ)"
 msgid "All registered systems on which experiments were performed"
 msgstr "Все зарегистрированные системы, на которых проводились эксперименты"
 
-#: system/templates/system/list.html:6
-msgid "Show only unique"
-msgstr "Показать только уникальные"
-
-#: system/templates/system/list.html:11
+#: system/templates/system/list.html:10
 msgid "CPU"
 msgstr "ЦП"
 
-#: system/templates/system/list.html:12
+#: system/templates/system/list.html:11
 msgid "GPU"
 msgstr "GPU"
 
-#: system/templates/system/list.html:13
+#: system/templates/system/list.html:12
 msgid "RAM"
 msgstr "ОЗУ"
 
-#: system/templates/system/list.html:14
+#: system/templates/system/list.html:13
 msgid "Name (setted by user)"
 msgstr "Имя (задано пользователем)"
+
+#~ msgid "Show only unique"
+#~ msgstr "Показать только уникальные"

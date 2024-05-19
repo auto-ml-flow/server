@@ -4,6 +4,7 @@ from django.db.models import Avg, Count, Sum
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views import generic
+from django.views.decorators.cache import cache_page
 
 from experiment.models import ExperimentModel, RunModel
 from system.models import (
@@ -44,6 +45,7 @@ class RunDetailView(generic.DetailView):
     context_object_name = "run"
 
 
+@cache_page(60 * 15)
 def index_view(request: HttpRequest) -> HttpResponse:
     # Number of unique systems
     unique_systems_count = (

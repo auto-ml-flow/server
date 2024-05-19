@@ -44,6 +44,7 @@ THIRD_PARTY_APPS = [
     "django_filters",
     "rosetta",
     "drf_spectacular",
+    "django_celery_beat",
 ]
 LOCAL_APPS = ["experiment", "system", "dataset", "meta_algo"]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -85,19 +86,44 @@ TEMPLATES = [
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 DATABASES = {
     "default": {
-        "ENGINE": "dj_db_conn_pool.backends.postgresql",
+        "ENGINE": "django.db.backends.postgresql",
         "HOST": env.str("POSTGRES_HOST", "127.0.0.1"),
         "PORT": env.str("POSTGRES_PORT", "5432"),
         "NAME": env.str("POSTGRES_NAME", "auto_ml_flow"),
         "USER": env.str("POSTGRES_USER", "postgres"),
         "PASSWORD": env.str("POSTGRES_PASSWORD", "postgres"),
-        'POOL_OPTIONS': {
-            'POOL_SIZE': 100,
-            'MAX_OVERFLOW': 20,
-            'RECYCLE': 24 * 60 * 60
-        },
-        'DISABLE_SERVER_SIDE_CURSORS': True,
+        "DISABLE_SERVER_SIDE_CURSORS": True,
     }
+}
+REDIS_HOST = env.str("DJANGO_REDIS_HOST", "localhost")
+REDIS_PORT = env.int("DJANGO_REDIS_PORT", 6379)
+
+REDIS_CACHE_HOST = env.str("DJANGO_REDIS_HOST", REDIS_HOST)
+REDIS_CACHE_PORT = env.int("REDIS_CACHE_PORT", REDIS_PORT)
+REDIS_CACHE_DB = env.int("DJANGO_REDIS_CACHE_DB", 1)
+
+REDIS_CELERY_HOST = env.str("DJANGO_REDIS_CELERY_HOST", REDIS_HOST)
+REDIS_CELERY_PORT = env.int("DJANGO_REDIS_CELERY_PORT", REDIS_PORT)
+REDIS_CELERY_DB = env.int("DJANGO_REDIS_CELERY_DB", 2)
+REDIS_CELERY_RESULT_DB = env.int("DJANGO_REDIS_CELERY_RESULT_DB", 3)
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": [
+            f"redis://{REDIS_CACHE_HOST}:{REDIS_CACHE_PORT}",
+        ],
+        "OPTIONS": {
+            "DB": REDIS_CACHE_DB,
+            "CONNECTION_POOL_CLASS": "redis.BlockingConnectionPool",
+            "CONNECTION_POOL_CLASS_KWARGS": {
+                "max_connections": 50,
+                "timeout": 20,
+            },
+            "MAX_CONNECTIONS": 1000,
+            "PICKLE_VERSION": -1,
+        },
+    },
 }
 
 # Internationalization
@@ -159,3 +185,19 @@ SPECTACULAR_SETTINGS = {
     "DESCRIPTION": "",
     "SERVE_INCLUDE_SCHEMA": False,
 }
+
+CELERY_BROKER_URL = f"redis://{REDIS_CELERY_HOST}:{REDIS_CELERY_PORT}"
+CELERY_RESULT_BACKEND = f"{CELERY_BROKER_URL}/{REDIS_CELERY_RESULT_DB}"
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TASK_SERIALIZER = "json"
+CELERY_TIMEZONE = TIME_ZONE
+# Мягкое время выполнения задачи (в секундах)
+CELERY_TASK_SOFT_TIME_LIMIT = 43200
+# Количество задач, которые рабочий процесс может предварительно получить
+CELERYD_CONCURRENCY = 10
+# CELERYD_PREFETCH_MULTIPLIER = 4
+# Максимальное количество задач, которые рабочий процесс может выполнить перед заменой
+CELERYD_MAX_TASKS_PER_CHILD = 100
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+CELERY_ENABLED = True

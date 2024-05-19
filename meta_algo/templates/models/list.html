@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n l10n static humanize %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">{% trans "Model List" %}</h2>
+    <div class="row">
+        {% for model in models %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm rounded border-0">
+                <div class="card-body">
+                    <h5 class="card-title">{{ model.name }}</h5>
+                    <p class="card-text">{{ model.description|truncatewords:20 }}</p>
+                    <p class="card-text">
+                        <strong>{% trans "Type" %}:</strong> {{ model.get_type_display }}<br>
+                        <strong>{% trans "MSE" %}:</strong> {{ model.mse|unlocalize|floatformat:4 }}<br>
+                        <strong>{% trans "RMSE" %}:</strong> {{ model.rmse|unlocalize|floatformat:4 }}<br>
+                        <strong>{% trans "Max Error" %}:</strong> {{ model.max_error|unlocalize|floatformat:4 }}<br>
+                        <strong>{% trans "Min Error" %}:</strong> {{ model.min_error|unlocalize|floatformat:4 }}
+                    </p>
+                    <p class="card-text"><small class="text-muted">{% trans "Created at" %}: {{ model.created_at|naturaltime }}</small></p>
+                    <a href="{{ model.dataset.file.url }}" class="btn btn-primary">{% trans "Download Dataset" %}</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
