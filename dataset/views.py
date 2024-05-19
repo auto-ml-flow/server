@@ -6,6 +6,7 @@ from dataset.models import DatasetModel
 class DatasetListView(generic.ListView):
     template_name = "dataset/list.html"
     model = DatasetModel
+    paginate_by = 15
     context_object_name = "datasets"
 
 

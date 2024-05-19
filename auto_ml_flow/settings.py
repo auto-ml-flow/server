@@ -45,7 +45,7 @@ THIRD_PARTY_APPS = [
     "rosetta",
     "drf_spectacular",
 ]
-LOCAL_APPS = ["experiment", "system", "dataset"]
+LOCAL_APPS = ["experiment", "system", "dataset", "meta_algo"]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
@@ -85,13 +85,18 @@ TEMPLATES = [
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
+        "ENGINE": "dj_db_conn_pool.backends.postgresql",
         "HOST": env.str("POSTGRES_HOST", "127.0.0.1"),
         "PORT": env.str("POSTGRES_PORT", "5432"),
         "NAME": env.str("POSTGRES_NAME", "auto_ml_flow"),
         "USER": env.str("POSTGRES_USER", "postgres"),
         "PASSWORD": env.str("POSTGRES_PASSWORD", "postgres"),
-        "CONN_MAX_AGE": 600,
+        'POOL_OPTIONS': {
+            'POOL_SIZE': 100,
+            'MAX_OVERFLOW': 20,
+            'RECYCLE': 24 * 60 * 60
+        },
+        'DISABLE_SERVER_SIDE_CURSORS': True,
     }
 }
 

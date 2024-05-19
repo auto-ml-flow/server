@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% load i18n %}
-{% load humanize %}
+{% load i18n l10n humanize static %}
+
 {% block content %}
 <div class="col-sm-8">
     <h3 class="mt-4">{% trans "Experiment" %}: <a href="{% url 'experiments:detail' run.experiment.id %}">{{ run.experiment.name }}</a></h3>
@@ -22,7 +22,7 @@
         <hr>
     {% endif %}
 
-    <h3>{% trans "Duration" %}: {{ run.duration|floatformat:2 }}</h3>
+    <h3>{% trans "Duration" %}: {{ run.duration|safe|floatformat:2 }}</h3>
     <h3>{% trans "Result" %}: <span class="{% if run.status == 'FAILED' %}status-failed{% else %}status-done{% endif %}">{{ run.status }}</span></h3>
     
     {% if run.description %}
@@ -53,7 +53,7 @@
                             {% for param in run.params.all %}
                             <tr>
                                 <td>{{ param.key }}</td>
-                                <td>{{ param.value|safe }}</td>
+                                <td>{{ param.value|unlocalize  }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -72,7 +72,7 @@
                             {% for result in run.results.all %}
                             <tr>
                                 <td>{{ result.key }}</td>
-                                <td>{{ result.value|safe|floatformat:5 }}</td>
+                                <td>{{ result.value|unlocalize }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -97,7 +97,7 @@
                 {% for metric in run.metrics.all %}
                 <tr>
                     <td>{{ metric.key }}</td>
-                    <td>{{ metric.value|safe|floatformat:5 }}</td>
+                    <td>{{ metric.value|unlocalize }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

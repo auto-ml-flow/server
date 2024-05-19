@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n static humanize %}
+{% load i18n l10n humanize static %}
 
 {% block content %}
 <div class="col-sm-8">
@@ -54,7 +54,7 @@
           data = new Date('{{ run.created_at|date:"c"|safe }}');
           runData.push({
               x: data,
-              y: {{ run.duration|safe }}
+              y: {{ run.duration|unlocalize }}
           });
           labels.push(data);
         {% endfor %}

@@ -3,7 +3,6 @@
 {% block content %}
 <div class="col-sm-8">
     <h1>{% trans "All registered systems on which experiments were performed" %}</h1>
-    <button onclick="toggleSystems()" class="btn btn-primary">{% trans "Show only unique" %}</button>
     <hr>
     <table id="systems-table" class="table table-striped table-bordered">
         <thead class="thead-dark">
@@ -27,41 +26,4 @@
     </table>
 </div>
 {% include "pagination.html" %}
-<script>
-    var showUnique = true;
-
-    function toggleSystems() {
-        var button = document.querySelector(".btn-primary");
-        var table = document.getElementById("systems-table");
-        var rows = table.getElementsByTagName("tr");
-        showUnique = !showUnique;
-
-        // Create an object to store unique system keys
-        var uniqueSystemKeys = {};
-
-        // Iterate through each row (skip header)
-        for (var i = 1; i < rows.length; i++) {
-            var cpu = rows[i].dataset.cpu;
-            var gpu = rows[i].dataset.gpu;
-            var ram = rows[i].dataset.ram;
-            var systemKey = cpu + gpu + ram;
-
-            if (showUnique) {
-                // Show only unique systems
-                if (!uniqueSystemKeys[systemKey]) {
-                    rows[i].style.display = "";
-                    uniqueSystemKeys[systemKey] = true;
-                } else {
-                    rows[i].style.display = "none";
-                }
-            } else {
-                // Show all systems
-                rows[i].style.display = "";
-            }
-        }
-
-        // Update button text
-        button.textContent = showUnique ? "Show All" : "Show only unique";
-    }
-</script>
 {% endblock %}

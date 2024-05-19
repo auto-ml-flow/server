@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% load static%}
+{% load static %}
 {% block content %}
-    <h1>{% trans "Selected system" %}: {{ system.cpu_name }}/{{ system.ram }} MB </h1>
+    <h1>{% trans "Selected system" %}: {{ system.cpu_name }}/{{ system.ram }} MB</h1>
     <hr>
     <p>{% trans "System registered" %}: {{ system.created_at }}</p>
     <hr>
@@ -23,7 +23,7 @@
             <th>{% trans "Usage (MB)" %}</th>
             <th>{% trans "Usage (%)" %}</th>
         </tr>
-        {% for memory_stat in system.system_statistics.all %}
+        {% for memory_stat in system_statistics %}
         <tr>
             <td>{{ memory_stat.usage_megabytes|safe }}</td>
             <td>{{ memory_stat.usage_percentage|safe }}</td>
@@ -44,7 +44,7 @@
         <tr>
             <th>{% trans "Utilization (%)" %}</th>
         </tr>
-        {% for cpu_stat in system.cpu_statistics.all %}
+        {% for cpu_stat in cpu_statistics %}
         <tr>
             <td>{{ cpu_stat.utilization }}</td>
         </tr>
@@ -69,7 +69,7 @@
             <th>{% trans "Usage (MB)" %}</th>
             <th>{% trans "Available Space" %}</th>
         </tr>
-        {% for disk_stat in system.disk_statistics.all %}
+        {% for disk_stat in disk_statistics %}
         <tr>
             <td>{{ disk_stat.usage_percentage|safe }}</td>
             <td>{{ disk_stat.usage_megabytes|safe }}</td>
@@ -95,7 +95,7 @@
             <th>{% trans "Receive (MB)" %}</th>
             <th>{% trans "Transmit (MB)" %}</th>
         </tr>
-        {% for network_stat in system.network_statistics.all %}
+        {% for network_stat in network_statistics %}
         <tr>
             <td>{{ network_stat.receive_megabytes }}</td>
             <td>{{ network_stat.transmit_megabytes }}</td>
@@ -125,25 +125,25 @@
                 labelsNetwork: []
             };
 
-            {% for stat in system.system_statistics.all %}
+            {% for stat in system_statistics %}
                 data.memoryUsageMegabytes.push({{ stat.usage_megabytes|safe }});
                 data.memoryUsagePercentage.push({{ stat.usage_percentage|safe }});
                 data.labelsMemory.push(new Date('{{ stat.created_at|date:"c"|safe }}'));
             {% endfor %}
 
-            {% for stat in system.cpu_statistics.all %}
+            {% for stat in cpu_statistics %}
                 data.cpuUtilization.push({{ stat.utilization|safe }});
                 data.labelsCPU.push(new Date('{{ stat.created_at|date:"c"|safe }}'));
             {% endfor %}
 
-            {% for stat in system.disk_statistics.all %}
+            {% for stat in disk_statistics %}
                 data.usagePercentage.push({{ stat.usage_percentage|safe }});
                 data.usageMegabytes.push({{ stat.usage_megabytes|safe }});
                 data.available.push({{ stat.available|safe }});
                 data.labelsDisk.push(new Date('{{ stat.created_at|date:"c"|safe }}'));
             {% endfor %}
 
-            {% for stat in system.network_statistics.all %}
+            {% for stat in network_statistics %}
                 data.networkReceive.push({{ stat.receive_megabytes|safe }});
                 data.networkTransmit.push({{ stat.transmit_megabytes|safe }});
                 data.labelsNetwork.push(new Date('{{ stat.created_at|date:"c"|safe }}'));

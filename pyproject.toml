@@ -18,6 +18,11 @@ drf-spectacular = "^0.27.2"
 djangorestframework-simplejwt = "^5.3.1"
 pydantic = "^2.7.1"
 psycopg2 = "^2.9.9"
+lazypredict = "^0.2.12"
+scikit-learn = "^1.4.2"
+pandas = "^2.2.2"
+numpy = "^1.26.4"
+django-db-connection-pool = {version = "^1.2.5", extras = ["postgresql"]}
 
 [tool.poetry.group.dev]
 optional = true
@@ -26,6 +31,7 @@ optional = true
 ruff = "^0.2.2"
 mypy = "^1.8.0"
 isort = "^5.13.2"
+ipykernel = "^6.29.4"
 
 [tool.poetry.group.prod]
 optional = true

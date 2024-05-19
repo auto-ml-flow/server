@@ -6,8 +6,8 @@ services:
       - .env
     ports:
       - ${POSTGRES_PORT}:${POSTGRES_PORT}
-    volumes:
-      - postgres_storage:/var/lib/postgresql/data
+    # volumes:
+    #   - postgres_storage:/var/lib/postgresql/data
     command: -p ${POSTGRES_PORT}
 
 volumes:
