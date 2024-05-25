@@ -27,6 +27,8 @@ SECRET_KEY = (
 )
 DEBUG = env.bool("DEBUG", True)
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["127.0.0.1", "localhost"])
+CORS_ALLOW_ALL_ORIGINS = True
+CSRF_TRUSTED_ORIGINS = ["https://87.242.117.47"]
 
 # Apps
 DJANGO_APPS = [
@@ -45,6 +47,7 @@ THIRD_PARTY_APPS = [
     "rosetta",
     "drf_spectacular",
     "django_celery_beat",
+    "corsheaders",
 ]
 LOCAL_APPS = ["experiment", "system", "dataset", "meta_algo"]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -53,6 +56,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
