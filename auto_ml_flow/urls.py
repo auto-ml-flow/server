@@ -40,6 +40,7 @@ v1 = [
     path("", include("experiment.api.urls")),
     path("", include("system.api.urls")),
     path("", include("dataset.api.urls")),
+    path("", include("meta_algo.api.urls"))
 ]
 
 urlpatterns = [

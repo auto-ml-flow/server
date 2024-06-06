@@ -119,8 +119,12 @@ def fit_meta_algo(target: Literal["DURATION", "PREDICT"] = "DURATION") -> None:
         # Вывод сообщения об ошибке при недостаточном количестве данных для обучения
         return
         # Прерывание выполнения функции
-
-    X, y = shuffle(df[prepared_dataset.labels], df[prepared_dataset.target], random_state=42)
+    
+    labels = prepared_dataset.labels
+    target = prepared_dataset.target
+    
+    no_target_labels = list(filter(lambda x: x not in target, labels)) # removing target from labels
+    X, y = shuffle(df[no_target_labels], df[prepared_dataset.target], random_state=42)
     # Разделение DataFrame на признаки X и целевую переменную y с использованием шуффлирования
 
     X = X.astype(np.float32)
