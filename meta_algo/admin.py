@@ -1,2 +1,6 @@
+from django.contrib import admin
 
-# Register your models here.
+from meta_algo.models import MetaAlgoModel, PreparedDatasetModel
+
+admin.site.register(MetaAlgoModel)
+admin.site.register(PreparedDatasetModel)

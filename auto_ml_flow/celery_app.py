@@ -12,11 +12,11 @@ app.conf.beat_schedule = {
     "update_meta_algo": {
         "task": "meta_algo.tasks.fit_meta_algo",
         # Execute every hour
-        "schedule": 30,
+        "schedule": 3600,
     },
-    # "create_prepared_dataset": {
-    #     "task": "meta_algo.tasks.create_prepared_dataset",
-    #      # Execute every half hour
-    #     "schedule": 10,
-    # },
+    "create_prepared_dataset": {
+        "task": "meta_algo.tasks.create_prepared_dataset",
+         # Execute every half hour
+        "schedule": 1800,
+    },
 }
